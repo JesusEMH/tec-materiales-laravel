@@ -6,5 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Puesto extends Model
 {
-    //
+    protected $fillable = [
+        'usuario_id', 'departamento_id', 'cargo_id', 'abreviacion_id'
+    ];
+
+    public function usuario(){
+        return $this->belongsTo('App\Usuario', 'usuario_id');
+    }
+
+    public function departamento(){
+        return $this->belongsTo('App\Departamento', 'departamento_id');
+    }
+
+    public function cargo(){
+        return $this->belongsTo('App\Cargo', 'cargo_id');
+    }
+
+    public function grado(){
+        return $this->belongsTo('App\Grado', 'abreviacion_id');
+    }
 }

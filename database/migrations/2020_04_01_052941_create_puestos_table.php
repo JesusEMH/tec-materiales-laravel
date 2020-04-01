@@ -16,6 +16,15 @@ class CreatePuestosTable extends Migration
         Schema::create('puestos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->unsignedBigInteger('usuario_id');
+            $table->unsignedBigInteger('departamento_id');
+            $table->unsignedBigInteger('cargo_id')->nullable();
+            $table->unsignedBigInteger('abreviacion_id')->nullable();
+            
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('departamento_id')->references('id')->on('departamentos');
+            $table->foreign('abreviacion_id')->references('id')->on('grados');
+            $table->foreign('cargo_id')->references('id')->on('cargos');
         });
     }
 

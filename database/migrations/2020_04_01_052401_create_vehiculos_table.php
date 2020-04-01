@@ -16,6 +16,13 @@ class CreateVehiculosTable extends Migration
         Schema::create('vehiculos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('vehiculo', 100);
+            $table->string('marca', 100);
+            $table->string('placas', 100);
+            $table->unsignedBigInteger('status_id');
+            $table->string('kilometraje', 100)->default('cero');
+
+            $table->foreign('status_id')->references('id')->on('statusvehiculos');
         });
     }
 

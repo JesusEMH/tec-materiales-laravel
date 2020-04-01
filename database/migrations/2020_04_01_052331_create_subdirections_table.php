@@ -16,6 +16,8 @@ class CreateSubdirectionsTable extends Migration
         Schema::create('subdirections', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('subdireccion', 100);
+            $table->string('subdirector', 100);
         });
     }
 

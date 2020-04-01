@@ -16,6 +16,12 @@ class CreateEspaciosTable extends Migration
         Schema::create('espacios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('espacio',  100);
+            $table->unsignedBigInteger('ubicacion_id');
+            $table->boolean('status')->default(true);
+            $table->string('imagen', 255)->nullable();
+
+            $table->foreign('ubicacion_id')->references('id')->on('ubications');
         });
     }
 

@@ -16,6 +16,12 @@ class CreateDepartamentosTable extends Migration
         Schema::create('departamentos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('departamento', 255);
+            $table->integer('telefono');
+            $table->string('correo', 255);
+            $table->unsignedBigInteger('subdireccion_id');
+
+            $table->foreign('subdireccion_id')->references('id')->on('subdirections');
         });
     }
 

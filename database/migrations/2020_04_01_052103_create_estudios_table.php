@@ -16,6 +16,7 @@ class CreateEstudiosTable extends Migration
         Schema::create('estudios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            table->string('estudio', 255);
         });
     }
 
