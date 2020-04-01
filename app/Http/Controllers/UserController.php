@@ -9,14 +9,14 @@ class UserController
 {
 
   public function index(){
-    $users = User::all();
+    $users = User::all(); 
 
     return response()->json([
       'status' => 'success',
       'code' => 200,
       'message' => 'listado de todos los usuarios',
       'usuarios' => $users
-    ]);
+    ], 200);
   }
 
 	public function register(request $request){
