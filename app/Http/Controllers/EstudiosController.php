@@ -14,18 +14,16 @@ class EstudiosController extends Controller
      */
     public function index()
     {
-        //
+        $estudio = Estudios::all();
+
+        return response()->json([
+            "code" => 200,
+            "status" => "success",
+            "elementos" => $estudio
+        ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +33,26 @@ class EstudiosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estudios = Estudios::create($request->all());
+
+        if(!$estudios){
+            return response()->json(
+                $data = [
+                    "message" => "lo siento!, algo ha salido mal",
+                    "code" => "404",
+                    "status" => "error"
+
+                ], 404);
+
+        }else{
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                    "code" => 200,
+                    "status" => "success",
+                    "elemento_creado" => $estudios
+                ]
+            ,200);
+        }
     }
 
     /**
@@ -46,7 +63,23 @@ class EstudiosController extends Controller
      */
     public function show(Estudios $estudios)
     {
-        //
+        if($estudios){
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                     "code" => "200",
+                    "status" => "success",
+                    "cargo" => $estudios,
+                ]
+            , 200); 
+        }else{
+            return response()->json([
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+            , 404);
+
+        }
     }
 
     /**
@@ -57,7 +90,27 @@ class EstudiosController extends Controller
      */
     public function edit(Estudios $estudios)
     {
-        //
+        $estudios->update($request->all());
+
+        if(!$estudios){
+            return response()->json([
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+
+            , 404);
+
+        }else{
+            return response()->json([
+                    'message' => 'todo ha salido bien',
+                    'code' => '200',
+                    'status' => 'success',
+                    'elemento_actualizado' => $estudios
+                ]
+            ,200);
+
+        }
     }
 
     /**
@@ -80,6 +133,23 @@ class EstudiosController extends Controller
      */
     public function destroy(Estudios $estudios)
     {
-        //
+        $estudios->delete();
+
+        if(empty($estudios)){
+            return response()->json([
+                    "message" => "lo siento!, algo ha salido mal",
+                    "code" => 404,
+                    "status" => "error"
+                ], 404);
+
+        }else{
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                    "code" => 200,
+                    "status" => "success",
+                    "elemento_borrado" => $estudios
+                ],200);
+
+        }
     }
 }

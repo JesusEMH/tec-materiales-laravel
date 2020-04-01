@@ -14,18 +14,16 @@ class SubdirectionController extends Controller
      */
     public function index()
     {
-        //
+        $subdirection = Subdirection::all();
+
+        return response()->json([
+            "code" => 200,
+            "status" => "success",
+            "elementos" => $subdirection
+        ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +33,26 @@ class SubdirectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subdirection = Subdirection::create($request->all());
+
+        if(!$subdirection){
+            return response()->json(
+                $data = [
+                    "message" => "lo siento!, algo ha salido mal",
+                    "code" => "404",
+                    "status" => "error"
+
+                ], 404);
+
+        }else{
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                    "code" => 200,
+                    "status" => "success",
+                    "elemento_creado" => $subdirection
+                ]
+            ,200);
+        }
     }
 
     /**
@@ -46,19 +63,26 @@ class SubdirectionController extends Controller
      */
     public function show(Subdirection $subdirection)
     {
-        //
+        if($subdirection){
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                     "code" => "200",
+                    "status" => "success",
+                    "cargo" => $subdirection,
+                ]
+            , 200); 
+        }else{
+            return response()->json([
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+            , 404);
+
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Subdirection  $subdirection
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Subdirection $subdirection)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +93,27 @@ class SubdirectionController extends Controller
      */
     public function update(Request $request, Subdirection $subdirection)
     {
-        //
+        $subdirection->update($request->all());
+
+        if(!$subdirection){
+            return response()->json([
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+
+            , 404);
+
+        }else{
+            return response()->json([
+                    'message' => 'todo ha salido bien',
+                    'code' => '200',
+                    'status' => 'success',
+                    'elemento_actualizado' => $subdirection
+                ]
+            ,200);
+
+        }
     }
 
     /**
@@ -80,6 +124,23 @@ class SubdirectionController extends Controller
      */
     public function destroy(Subdirection $subdirection)
     {
-        //
+        $subdirection->delete();
+
+        if(empty($subdirection)){
+            return response()->json([
+                    "message" => "lo siento!, algo ha salido mal",
+                    "code" => 404,
+                    "status" => "error"
+                ], 404);
+
+        }else{
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                    "code" => 200,
+                    "status" => "success",
+                    "elemento_borrado" => $subdirection
+                ],200);
+
+        }
     }
 }

@@ -14,18 +14,16 @@ class MantenimientoController extends Controller
      */
     public function index()
     {
-        //
+        $mantenimientos = Mantenimiento::all();
+
+        return response()->json([
+            "code" => 200,
+            "status" => "success",
+            "cargos" => $mantenimientos
+        ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +33,26 @@ class MantenimientoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mantenimiento = Mantenimiento::create($request->all());
+
+        if(!$mantenimiento){
+            return response()->json(
+                $data = [
+                    "message" => "lo siento!, algo ha salido mal",
+                    "code" => "404",
+                    "status" => "error"
+
+                ], 404);
+
+        }else{
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                    "code" => 200,
+                    "status" => "success",
+                    "elemento_creado" => $mantenimiento
+                ]
+            ,200);
+        }
     }
 
     /**
@@ -44,21 +61,30 @@ class MantenimientoController extends Controller
      * @param  \App\Mantenimiento  $mantenimiento
      * @return \Illuminate\Http\Response
      */
-    public function show(Mantenimiento $mantenimiento)
+    public function show($id)
     {
-        //
+        $mantenimiento = Mantenimiento::find($id);
+
+        if(is_object($mantenimiento)){
+            return Response()->json([
+                    "message" => "todo ha salido bien",
+                     "code" => "200",
+                    "status" => "success",
+                    "elementos" => $mantenimiento,
+                ]
+            , 200); 
+        }else{
+            return Response()->json([
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+            , 404);
+
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Mantenimiento  $mantenimiento
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Mantenimiento $mantenimiento)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +95,27 @@ class MantenimientoController extends Controller
      */
     public function update(Request $request, Mantenimiento $mantenimiento)
     {
-        //
+        $mantenimiento->update($request->all());
+
+        if(!$mantenimiento){
+            return response()->json([
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+
+            , 404);
+
+        }else{
+            return response()->json([
+                    'message' => 'todo ha salido bien',
+                    'code' => '200',
+                    'status' => 'success',
+                    'elemento_actualizado' => $mantenimiento
+                ]
+            ,200);
+
+        }
     }
 
     /**
@@ -80,6 +126,23 @@ class MantenimientoController extends Controller
      */
     public function destroy(Mantenimiento $mantenimiento)
     {
-        //
+        $mantenimiento->delete();
+
+        if(empty($mantenimiento)){
+            return response()->json([
+                    "message" => "lo siento!, algo ha salido mal",
+                    "code" => 404,
+                    "status" => "error"
+                ], 404);
+
+        }else{
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                    "code" => 200,
+                    "status" => "success",
+                    "elemento_borrado" => $mantenimiento
+                ],200);
+
+        }
     }
 }

@@ -14,18 +14,16 @@ class GradoController extends Controller
      */
     public function index()
     {
-        //
+        $grado = Grado::all();
+
+        return response()->json([
+            "code" => 200,
+            "status" => "success",
+            "elementos" => $grado
+        ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +33,26 @@ class GradoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $grado = Grado::create($request->all());
+
+        if(!$grado){
+            return response()->json(
+                $data = [
+                    "message" => "lo siento!, algo ha salido mal",
+                    "code" => "404",
+                    "status" => "error"
+
+                ], 404);
+
+        }else{
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                    "code" => 200,
+                    "status" => "success",
+                    "elemento_creado" => $grado
+                ]
+            ,200);
+        }
     }
 
     /**
@@ -46,19 +63,26 @@ class GradoController extends Controller
      */
     public function show(Grado $grado)
     {
-        //
+        if($grado){
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                     "code" => "200",
+                    "status" => "success",
+                    "cargo" => $grado,
+                ]
+            , 200); 
+        }else{
+            return response()->json([
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+            , 404);
+
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Grado  $grado
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Grado $grado)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +93,27 @@ class GradoController extends Controller
      */
     public function update(Request $request, Grado $grado)
     {
-        //
+        $grado->update($request->all());
+
+        if(!$grado){
+            return response()->json([
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+
+            , 404);
+
+        }else{
+            return response()->json([
+                    'message' => 'todo ha salido bien',
+                    'code' => '200',
+                    'status' => 'success',
+                    'elemento_actualizado' => $grado
+                ]
+            ,200);
+
+        }
     }
 
     /**
@@ -80,6 +124,23 @@ class GradoController extends Controller
      */
     public function destroy(Grado $grado)
     {
-        //
+        $grado->delete();
+
+        if(empty($grado)){
+            return response()->json([
+                    "message" => "lo siento!, algo ha salido mal",
+                    "code" => 404,
+                    "status" => "error"
+                ], 404);
+
+        }else{
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                    "code" => 200,
+                    "status" => "success",
+                    "elemento_borrado" => $grado
+                ],200);
+
+        }
     }
 }

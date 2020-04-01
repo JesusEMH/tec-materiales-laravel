@@ -14,18 +14,15 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = Usuario::all();
+
+        return response()->json([
+            "code" => 200,
+            "status" => "success",
+            "elementos" => $usuario
+        ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +32,26 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = Usuario::create($request->all());
+
+        if(!$usuario){
+            return response()->json(
+                $data = [
+                    "message" => "lo siento!, algo ha salido mal",
+                    "code" => "404",
+                    "status" => "error"
+
+                ], 404);
+
+        }else{
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                    "code" => 200,
+                    "status" => "success",
+                    "elemento_creado" => $usuario
+                ]
+            ,200);
+        }
     }
 
     /**
@@ -46,19 +62,26 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
-        //
+        if($usuario){
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                     "code" => "200",
+                    "status" => "success",
+                    "cargo" => $usuario,
+                ]
+            , 200); 
+        }else{
+            return response()->json([
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+            , 404);
+
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Usuario  $usuario
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Usuario $usuario)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +92,27 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, Usuario $usuario)
     {
-        //
+        $usuario->update($request->all());
+
+        if(!$usuario){
+            return response()->json([
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+
+            , 404);
+
+        }else{
+            return response()->json([
+                    'message' => 'todo ha salido bien',
+                    'code' => '200',
+                    'status' => 'success',
+                    'elemento_actualizado' => $usuario
+                ]
+            ,200);
+
+        }
     }
 
     /**
@@ -80,6 +123,23 @@ class UsuarioController extends Controller
      */
     public function destroy(Usuario $usuario)
     {
-        //
+        $usuario->delete();
+
+        if(empty($usuario)){
+            return response()->json([
+                    "message" => "lo siento!, algo ha salido mal",
+                    "code" => 404,
+                    "status" => "error"
+                ], 404);
+
+        }else{
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                    "code" => 200,
+                    "status" => "success",
+                    "elemento_borrado" => $usuario
+                ],200);
+
+        }
     }
 }
