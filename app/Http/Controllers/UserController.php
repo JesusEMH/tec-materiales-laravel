@@ -4,12 +4,14 @@
 use App\User;
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\bcrypt;
 
 class UserController extends Controller
 {
 
   public function index(){
-    $users = \User::all(); 
+    $users = User::all(); 
 
     return response()->json([
       'status' => 'success',
