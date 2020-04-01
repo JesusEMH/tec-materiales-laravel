@@ -81,7 +81,7 @@ class UserController
 			return response()->json([
 				'status' => 'success',
 				'code' => 200,
-				'message' => 'parece que nos volvemos a encontrar'.
+				'message' => 'parece que nos volvemos a encontrar',
 				'acceso' => $loginData
 			], 200);
 		}else{
