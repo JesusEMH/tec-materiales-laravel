@@ -43,15 +43,16 @@ class UserController extends Controller
 			]);
 		}else{
 				$registro['password'] = bcrypt($registro['password']);
-        unset($registro['repeat_password']);
         
+
 				$user = User::create($registro);
+        
 
 				return response()->json([
 					'status' => 'success',
 					'code' => 200,
 					'message' => 'parece que tenemos un usuario nuevo',
-					'usuario' => $user
+					'usuario' => $user->unset('repeat_password')
 				]);
 
 
