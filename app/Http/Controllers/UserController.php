@@ -30,7 +30,7 @@ class UserController extends Controller
             'email'         =>'required|email|unique:users',
             'password'      =>'required',
             'control_number'  =>'required|unique:users',
-            'repeat_password' =>'required'
+            'repeat_password' =>'required|same:password'
 
           ]);
 
@@ -38,12 +38,9 @@ class UserController extends Controller
 			return response()->json([
 				'status' => 'error',
 				'code' => 404,
-				'message' => 'perdon, tus datos parecen no ser correctos'
+				'message' => 'perdon, tus datos parecen no ser correctos o las contrasenas no coinciden'
 			]);
 		}else{
-
-			if($registro['password'] == $registro['repeat_password']){
-
 				$registro['password'] = bcrypt($registro['password']);
 				$user = User::create($registro);
 
@@ -52,13 +49,6 @@ class UserController extends Controller
 					'code' => 200,
 					'message' => 'parece que tenemos un usuario nuevo',
 					'usuario' => $user
-				]);
-
-			}else{
-				return response()->json([
-					'status' => 'error',
-					'code' => 404,
-					'message' => 'perdon, pero las passwords no coinciden'
 				]);
 
 
