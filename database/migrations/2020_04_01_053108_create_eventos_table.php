@@ -29,7 +29,7 @@ class CreateEventosTable extends Migration
             $table->boolean('verificado')->default(false);
 
 
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('usuario_id')->references('id')->on('users');
             $table->foreign('depto_solicitante')->references('id')->on('departamentos');
             $table->foreign('espacio_id')->references('id')->on('espacios');
         });

@@ -16,6 +16,7 @@ class CreateMantenimientosTable extends Migration
         Schema::create('mantenimientos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->unsignedBigInteger('usuario_id');
             $table->string('tipo', 100)->default('interno');
             $table->unsignedBigInteger('servicio_id');
             $table->string('asignado_a', 100)->default('interno');
@@ -32,6 +33,7 @@ class CreateMantenimientosTable extends Migration
 
             $table->foreign('servicio_id')->references('id')->on('statusorders');
             $table->foreign('depto_solicitante')->references('id')->on('departamentos');
+            $table->foreign('usuario_id')->references('id')->on('users');
         });
     }
 

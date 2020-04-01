@@ -19,4 +19,8 @@ class Salida extends Model
         return $this->belongsTo('App\Departamento', 'depto_solicitante');
     }
 
+    public function user(){
+        return $this->belongsTo('App\User', 'usuario_id');
+    }
+
 }

@@ -21,7 +21,7 @@ class CreatePuestosTable extends Migration
             $table->unsignedBigInteger('cargo_id')->nullable();
             $table->unsignedBigInteger('abreviacion_id')->nullable();
             
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('usuario_id')->references('id')->on('users');
             $table->foreign('departamento_id')->references('id')->on('departamentos');
             $table->foreign('abreviacion_id')->references('id')->on('grados');
             $table->foreign('cargo_id')->references('id')->on('cargos');

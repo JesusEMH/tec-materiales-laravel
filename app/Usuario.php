@@ -11,7 +11,5 @@ class Usuario extends Model
         'nombre', 'apellidos', 'numero_control', 'correo', 'contrasena', 'repetir_contrasena', 'descripcion', 'telefono', 'imagen', 'clave_electronica', 'rol', 'remember_token'
     ];
 
-    public function puesto(){
-        return $this->hasMany('App\Puesto');
-    }
+
 }

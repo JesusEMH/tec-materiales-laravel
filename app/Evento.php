@@ -12,8 +12,8 @@ class Evento extends Model
     ];
 
     
-    public function usuario(){
-        return $this->belongsTo('App\Usuario', 'usuario_id');
+    public function user(){
+        return $this->belongsTo('App\User', 'usuario_id');
     }
 
     public function departamento(){
