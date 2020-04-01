@@ -52,7 +52,7 @@ class UserController extends Controller
 					'status' => 'success',
 					'code' => 200,
 					'message' => 'parece que tenemos un usuario nuevo',
-					'usuario' => $user->unset('repeat_password')
+					'usuario' => $user
 				]);
 
 
