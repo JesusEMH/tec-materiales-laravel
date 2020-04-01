@@ -7,11 +7,7 @@ use Illuminate\Http\Request;
 
 class EventoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $evento = Evento::all();
@@ -23,12 +19,7 @@ class EventoController extends Controller
         ], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $evento = Evento::create($request->all());
@@ -53,12 +44,7 @@ class EventoController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Evento  $evento
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $evento = Evento::find($id);
@@ -84,13 +70,6 @@ class EventoController extends Controller
 
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Evento  $evento
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Evento $evento)
     {
         $evento->update($request->all());
@@ -116,12 +95,7 @@ class EventoController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Evento  $evento
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Evento $evento)
     {
         $evento->delete();
