@@ -8,6 +8,17 @@ use Illuminate\Http\Request;
 class UserController
 {
 
+  public function index(){
+    $users = User::all();
+
+    return response()->json([
+      'status' => 'success',
+      'code' => 200,
+      'message' => 'listado de todos los usuarios',
+      'usuarios' => $users
+    ]);
+  }
+
 	public function register(request $request){
 		$registro = $request->all();
 

@@ -17,14 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('users', 'UserController@index');
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
-Route::put('/api/user/update', 'UserController@update');
-Route::delete('/api/user/delete', 'UserController@delete');
-Route::post('/api/user/upload', 'UserController@upload');
+Route::put('update', 'UserController@update');
+Route::delete('delete', 'UserController@delete');
+Route::post('upload', 'UserController@upload');
 
-Route::get('/api/user/avatar/{filename}', 'UserController@getImage');
-Route::get('/api/user/detail/{id}', 'UserController@detail');
+Route::get('avatar/{filename}', 'UserController@getImage');
+Route::get('detail/{id}', 'UserController@detail');
 
 
 Route::group(['middleware' =>  'auth:api'], function(){
