@@ -104,10 +104,9 @@ class UserController extends Controller
 
         }else{
             return response()->json([
-                    'message' => 'todo ha salido bien',
+                    'message' => 'todo ha salido bien, el usuario se ha actualizado',
                     'code' => '200',
-                    'status' => 'success',
-                    'usuario_actualizado' => $user
+                    'status' => 'success'
                 ]
             ,200);
 
@@ -128,10 +127,9 @@ class UserController extends Controller
 
         }else{
             return response()->json([
-                    "message" => "todo ha salido bien",
+                    "message" => "todo ha salido bien, el usuario se ha borrado bien",
                     "code" => 200,
-                    "status" => "success",
-                    "usuario_borrado" => $user
+                    "status" => "success"
                 ],200);
 
         }
