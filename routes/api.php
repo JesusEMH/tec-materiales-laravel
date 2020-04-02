@@ -20,9 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('users', 'UserController@index');
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
-Route::put('update', 'UserController@update');
-Route::delete('delete', 'UserController@delete');
-Route::post('upload', 'UserController@upload');
 
 Route::get('avatar/{filename}', 'UserController@getImage');
 Route::get('detail/{id}', 'UserController@detail');
@@ -43,6 +40,10 @@ Route::group(['middleware' =>  'auth:api'], function(){
 	Route::apiResource('statusvehiculos', 'StatusvehiculoController');
 	Route::apiResource('departamentos', 'DepartamentoController');	
 	Route::apiResource('ubications', 'UbicationController');
+
+	Route::put('update', 'UserController@update');
+	Route::delete('delete', 'UserController@delete');
+	Route::post('upload', 'UserController@upload');
 });
 
 
