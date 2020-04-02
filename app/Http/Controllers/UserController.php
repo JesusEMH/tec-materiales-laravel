@@ -70,9 +70,9 @@ class UserController extends Controller
 		if(Auth::attempt($datos)){
 			$user = Auth::user();
       $usuario = User::where('email', $datos['email']);
-      
+
 			$loginData['token'] = $user->createToken('mitoken')->accessToken;
-|     
+     
 			return response()->json([
 				'status' => 'success',
 				'code' => 200,
