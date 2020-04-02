@@ -24,7 +24,7 @@ class EventoController extends Controller
     {
         $evento = Evento::create($request->all());
 
-        if(!$cargo){
+        if(!$evento){
             return response()->json(
                 $data = [
                     "message" => "lo siento!, algo ha salido mal",
@@ -62,8 +62,7 @@ class EventoController extends Controller
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
-                ]
-            , 404);
+                ], 404);
 
         }
     }
