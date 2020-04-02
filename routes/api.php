@@ -41,8 +41,8 @@ Route::group(['middleware' =>  'auth:api'], function(){
 	Route::apiResource('departamentos', 'DepartamentoController');	
 	Route::apiResource('ubications', 'UbicationController');
 
-	Route::put('update', 'UserController@update');
-	Route::delete('delete', 'UserController@delete');
+	Route::put('update/{id}', 'UserController@update');
+	Route::delete('delete/{id}', 'UserController@delete');
 	Route::post('upload', 'UserController@upload');
 });
 

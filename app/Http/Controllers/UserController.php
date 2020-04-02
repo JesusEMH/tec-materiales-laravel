@@ -88,9 +88,10 @@ class UserController extends Controller
 		
 	}
 
-	public function update(Request $request, User $user){
+	public function update(Request $request, $id){
 
-		$user->update($request->all());
+		
+    $user = User::where('id', $id)->update($request->all());
 
         if(!$user){
             return response()->json([
@@ -114,7 +115,8 @@ class UserController extends Controller
 
 	}
 
-	public function delete(User $user){
+	public function delete($id){
+    $user = User::where('id', $id);
 		$user->delete();
 
         if(empty($user)){
