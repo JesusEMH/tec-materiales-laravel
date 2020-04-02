@@ -90,10 +90,10 @@ class UserController extends Controller
 
 	public function update(Request $request, $id){
 
-		
-    $user = User::where('id', $id)->update($request->all());
+		$user = User::where('id', $id);
+    $user_actualizado = $user->update($request->all());
 
-        if(!$user){
+        if(!$user_actualizado){
             return response()->json([
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
@@ -117,9 +117,9 @@ class UserController extends Controller
 
 	public function delete($id){
     $user = User::where('id', $id);
-		$user->delete();
+		$user_borrado = $user->delete();
 
-        if(empty($user)){
+        if(!$user_borrado)){
             return response()->json([
                     "message" => "lo siento!, algo ha salido mal",
                     "code" => 404,
