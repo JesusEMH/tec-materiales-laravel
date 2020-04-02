@@ -119,7 +119,7 @@ class UserController extends Controller
     $user = User::where('id', $id);
 		$user_borrado = $user->delete();
 
-        if(!$user_borrado)){
+        if(!$user_borrado){
             return response()->json([
                     "message" => "lo siento!, algo ha salido mal",
                     "code" => 404,
