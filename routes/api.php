@@ -37,10 +37,10 @@ Route::group(['middleware' =>  'auth:api'], function(){
 	Route::apiResource('mantenimientos', 'MantenimientoController');
 	Route::apiResource('puestos', 'PuestoController');
 	Route::apiResource('salidas', 'SalidaController');
-	Route::apiResource('status-orders', 'StatusorderController');
-	Route::apiResource('subdirecciones', 'SubdirectionController');
+	Route::apiResource('statusorders', 'StatusorderController');
+	Route::apiResource('subdirections', 'SubdirectionController');
 	Route::apiResource('vehiculos', 'VehiculoController');
-	Route::apiResource('status-vehiculos', 'StatusvehiculoController');
+	Route::apiResource('statusvehiculos', 'StatusvehiculoController');
 	Route::apiResource('departamentos', 'DepartamentoController');	
 	Route::apiResource('ubicaciones', 'UbicationController');
 });
