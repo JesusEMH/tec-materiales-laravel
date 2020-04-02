@@ -42,7 +42,7 @@ Route::group(['middleware' =>  'auth:api'], function(){
 	Route::apiResource('vehiculos', 'VehiculoController');
 	Route::apiResource('statusvehiculos', 'StatusvehiculoController');
 	Route::apiResource('departamentos', 'DepartamentoController');	
-	Route::apiResource('ubicaciones', 'UbicationController');
+	Route::apiResource('ubications', 'UbicationController');
 });
 
 
