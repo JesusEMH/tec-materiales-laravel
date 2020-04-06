@@ -16,11 +16,12 @@ class VehiculoController extends Controller
     {
         $vehiculos = Vehiculo::all();
 
-        return response()->json([
-            "code" => 200,
-            "status" => "success",
-            "cargos" => $vehiculos
-        ], 200);
+        return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $vehiculos
+            ], 200);
     }
 
 
