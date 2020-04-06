@@ -16,11 +16,12 @@ class EspacioController extends Controller
     {
         $espacio = Espacio::all();
 
-        return response()->json([
-            "code" => 200,
-            "status" => "success",
-            "elementos" => $espacio
-        ], 200);
+        return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $espacio
+            ], 200);
     }
 
 
@@ -45,7 +46,8 @@ class EspacioController extends Controller
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",
@@ -64,7 +66,8 @@ class EspacioController extends Controller
     public function show(Espacio $espacio)
     {
         if($espacio){
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                      "code" => "200",
                     "status" => "success",
@@ -72,7 +75,8 @@ class EspacioController extends Controller
                 ]
             , 200); 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -94,7 +98,8 @@ class EspacioController extends Controller
         $espacio->update($request->all());
 
         if(!$espacio){
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -103,7 +108,8 @@ class EspacioController extends Controller
             , 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'todo ha salido bien',
                     'code' => '200',
                     'status' => 'success',
@@ -125,14 +131,16 @@ class EspacioController extends Controller
         $espacio->delete();
 
         if(empty($espacio)){
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "lo siento!, algo ha salido mal",
                     "code" => 404,
                     "status" => "error"
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",

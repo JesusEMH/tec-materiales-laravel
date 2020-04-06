@@ -16,10 +16,11 @@ class DepartamentoController extends Controller
     {
         $departamento = Departamento::all();
 
-        return response()->json([
+        return response()->json(
+            $data = [
             "code" => 200,
             "status" => "success",
-            "cargos" => $departamento
+            "elementos" => $departamento
         ], 200);
     }
 
@@ -44,7 +45,8 @@ class DepartamentoController extends Controller
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",
@@ -65,7 +67,8 @@ class DepartamentoController extends Controller
         $departamento = Departamento::find($id);
 
         if(is_object($departamento)){
-            return Response()->json([
+            return Response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                      "code" => "200",
                     "status" => "success",
@@ -73,7 +76,8 @@ class DepartamentoController extends Controller
                 ]
             , 200); 
         }else{
-            return Response()->json([
+            return Response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -97,7 +101,8 @@ class DepartamentoController extends Controller
         $departamento->update($request->all());
 
         if(!$departamento){
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -106,7 +111,8 @@ class DepartamentoController extends Controller
             , 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'todo ha salido bien',
                     'code' => '200',
                     'status' => 'success',
@@ -128,14 +134,16 @@ class DepartamentoController extends Controller
         $departamento->delete();
 
         if(empty($departamento)){
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "lo siento!, algo ha salido mal",
                     "code" => 404,
                     "status" => "error"
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",

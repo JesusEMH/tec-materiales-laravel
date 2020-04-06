@@ -16,7 +16,8 @@ class StatusorderController extends Controller
     {
         $status = Statusorder::all();
 
-        return response()->json([
+        return response()->json(
+            $data = [
             "code" => 200,
             "status" => "success",
             "elementos" => $status
@@ -44,7 +45,8 @@ class StatusorderController extends Controller
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",
@@ -63,7 +65,8 @@ class StatusorderController extends Controller
     public function show(Statusorder $statusorder)
     {
         if($statusorder){
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                      "code" => "200",
                     "status" => "success",
@@ -71,7 +74,8 @@ class StatusorderController extends Controller
                 ]
             , 200); 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -95,7 +99,8 @@ class StatusorderController extends Controller
         $statusorder->update($request->all());
 
         if(!$statusorder){
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -104,7 +109,8 @@ class StatusorderController extends Controller
             , 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'todo ha salido bien',
                     'code' => '200',
                     'status' => 'success',
@@ -126,14 +132,16 @@ class StatusorderController extends Controller
         $statusorder->delete();
 
         if(empty($statusorder)){
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "lo siento!, algo ha salido mal",
                     "code" => 404,
                     "status" => "error"
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",

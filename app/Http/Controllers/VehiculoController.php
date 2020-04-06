@@ -46,7 +46,8 @@ class VehiculoController extends Controller
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",
@@ -67,7 +68,8 @@ class VehiculoController extends Controller
         $vehiculo = Vehiculo::find($id);
 
         if(is_object($vehiculo)){
-            return Response()->json([
+            return Response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                      "code" => "200",
                     "status" => "success",
@@ -75,7 +77,8 @@ class VehiculoController extends Controller
                 ]
             , 200); 
         }else{
-            return Response()->json([
+            return Response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -98,7 +101,8 @@ class VehiculoController extends Controller
         $vehiculo->update($request->all());
 
         if(!$vehiculo){
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -107,7 +111,8 @@ class VehiculoController extends Controller
             , 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'todo ha salido bien',
                     'code' => '200',
                     'status' => 'success',
@@ -129,14 +134,16 @@ class VehiculoController extends Controller
         $vehiculo->delete();
 
         if(empty($vehiculo)){
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "lo siento!, algo ha salido mal",
                     "code" => 404,
                     "status" => "error"
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",
