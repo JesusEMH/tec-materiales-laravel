@@ -16,11 +16,12 @@ class SalidaController extends Controller
     {
         $salidas = Salida::all();
 
-        return response()->json([
-            "code" => 200,
-            "status" => "success",
-            "cargos" => $salidas
-        ], 200);
+        return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $salidas
+            ], 200);
     }
 
 
@@ -45,14 +46,15 @@ class SalidaController extends Controller
                 ], 404);
 
         }else{
-            return response()->json([
-                    "message" => "todo ha salido bien",
-                    "code" => 200,
-                    "status" => "success",
-                    "elemento_creado" => $salida
-                ]
-            ,200);
-        }
+            return response()->json(
+                $data = [
+                        "message" => "todo ha salido bien",
+                        "code" => 200,
+                        "status" => "success",
+                        "elemento_creado" => $salida
+                    ]
+                ,200);
+            }
     }
 
     /**
@@ -66,15 +68,17 @@ class SalidaController extends Controller
         $salida = Salida::find($id);
 
         if(is_object($salida)){
-            return Response()->json([
-                    "message" => "todo ha salido bien",
-                     "code" => "200",
-                    "status" => "success",
-                    "elementos" => $salida,
-                ]
-            , 200); 
+            return Response()->json(
+                $data = [
+                        "message" => "todo ha salido bien",
+                         "code" => "200",
+                        "status" => "success",
+                        "elemento" => $salida,
+                    ]
+                , 200); 
         }else{
-            return Response()->json([
+            return Response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -97,7 +101,8 @@ class SalidaController extends Controller
         $salida->update($request->all());
 
         if(!$salida){
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -106,7 +111,8 @@ class SalidaController extends Controller
             , 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'todo ha salido bien',
                     'code' => '200',
                     'status' => 'success',
@@ -128,14 +134,16 @@ class SalidaController extends Controller
         $salida->delete();
 
         if(empty($salida)){
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "lo siento!, algo ha salido mal",
                     "code" => 404,
                     "status" => "error"
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",

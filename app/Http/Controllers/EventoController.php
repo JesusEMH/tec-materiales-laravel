@@ -12,10 +12,11 @@ class EventoController extends Controller
     {
         $evento = Evento::all();
 
-        return response()->json([
+        return response()->json(
+            $data = [
             "code" => 200,
             "status" => "success",
-            "cargos" => $evento
+            "elementos" => $evento
         ], 200);
     }
 
@@ -34,7 +35,8 @@ class EventoController extends Controller
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",
@@ -50,15 +52,17 @@ class EventoController extends Controller
         $evento = Evento::find($id);
 
         if(is_object($evento)){
-            return Response()->json([
+            return Response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                      "code" => "200",
                     "status" => "success",
-                    "elementos" => $evento,
+                    "elemento" => $evento,
                 ]
             , 200); 
         }else{
-            return Response()->json([
+            return Response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -74,7 +78,8 @@ class EventoController extends Controller
         $evento->update($request->all());
 
         if(!$evento){
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -83,7 +88,8 @@ class EventoController extends Controller
             , 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'todo ha salido bien',
                     'code' => '200',
                     'status' => 'success',
@@ -100,14 +106,16 @@ class EventoController extends Controller
         $evento->delete();
 
         if(empty($evento)){
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "lo siento!, algo ha salido mal",
                     "code" => 404,
                     "status" => "error"
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",

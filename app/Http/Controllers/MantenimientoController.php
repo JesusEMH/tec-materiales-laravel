@@ -16,10 +16,11 @@ class MantenimientoController extends Controller
     {
         $mantenimientos = Mantenimiento::all();
 
-        return response()->json([
+        return response()->json(
+            $data = [
             "code" => 200,
             "status" => "success",
-            "cargos" => $mantenimientos
+            "elementos" => $mantenimientos
         ], 200);
     }
 
@@ -45,7 +46,8 @@ class MantenimientoController extends Controller
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",
@@ -66,15 +68,17 @@ class MantenimientoController extends Controller
         $mantenimiento = Mantenimiento::find($id);
 
         if(is_object($mantenimiento)){
-            return Response()->json([
+            return Response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                      "code" => "200",
                     "status" => "success",
-                    "elementos" => $mantenimiento,
+                    "elemento" => $mantenimiento,
                 ]
             , 200); 
         }else{
-            return Response()->json([
+            return Response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -98,7 +102,8 @@ class MantenimientoController extends Controller
         $mantenimiento->update($request->all());
 
         if(!$mantenimiento){
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -107,7 +112,8 @@ class MantenimientoController extends Controller
             , 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     'message' => 'todo ha salido bien',
                     'code' => '200',
                     'status' => 'success',
@@ -129,14 +135,16 @@ class MantenimientoController extends Controller
         $mantenimiento->delete();
 
         if(empty($mantenimiento)){
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "lo siento!, algo ha salido mal",
                     "code" => 404,
                     "status" => "error"
                 ], 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+                $data = [
                     "message" => "todo ha salido bien",
                     "code" => 200,
                     "status" => "success",
