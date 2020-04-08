@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Evento;
+use App\Departamento;
+use App\Espacio;
+use App\User;
 use Illuminate\Http\Request;
 
 class EventoController extends Controller
@@ -51,6 +54,9 @@ class EventoController extends Controller
     public function show($id)
     {
         $evento = Evento::find($id);
+        $departamento = Departamento::where('id',$evento['depto_solicitante']);
+        $espacio = Espacio::where('id',$evento['espacio_id']);
+        $usuario = User::where('id',$evento['usuario_id']);
 
         if(is_object($evento)){
             return Response()->json(
@@ -59,6 +65,9 @@ class EventoController extends Controller
                      "code" => "200",
                     "status" => "success",
                     "elemento" => $evento,
+                    "departamento" => $departamento,
+                    "espacio" => $espacio,
+                    "usuario" => $usuario
                 ]
             , 200); 
         }else{
