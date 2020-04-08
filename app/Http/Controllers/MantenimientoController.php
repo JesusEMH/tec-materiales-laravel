@@ -34,9 +34,10 @@ class MantenimientoController extends Controller
      */
     public function store(Request $request)
     {
-        $mantenimiento = Mantenimiento::create($request->all());
+        $creado = Mantenimiento::create($request->all());
+        $mantenimiento = Mantenimiento::find($creado['id']);
 
-        if(!$mantenimiento){
+        if(!$creado){
             return response()->json(
                 $data = [
                     "message" => "lo siento!, algo ha salido mal",
