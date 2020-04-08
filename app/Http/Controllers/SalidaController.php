@@ -34,9 +34,10 @@ class SalidaController extends Controller
      */
     public function store(Request $request)
     {
-        $salida = Salida::create($request->all());
+        $creado = Salida::create($request->all());
+        $salida = Salida::find($creado['id']);
 
-        if(!$salida){
+        if(!$creado){
             return response()->json(
                 $data = [
                     "message" => "lo siento!, algo ha salido mal",

@@ -14,18 +14,19 @@ class EventoController extends Controller
 
         return response()->json(
             $data = [
-            "code" => 200,
-            "status" => "success",
-            "elementos" => $evento
-        ], 200);
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $evento
+            ], 200);
     }
 
 
     public function store(Request $request)
     {
-        $evento = Evento::create($request->all());
+        $creado = Evento::create($request->all());
+        $evento = Evento::find($creado['id']);
 
-        if(!$evento){
+        if(!$creado){
             return response()->json(
                 $data = [
                     "message" => "lo siento!, algo ha salido mal",
