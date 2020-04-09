@@ -54,9 +54,9 @@ class EventoController extends Controller
     public function show($id)
     {
         $evento = Evento::find($id);
-        $departamento = Departamento::where('id',$evento['depto_solicitante']);
-        $espacio = Espacio::where('id',$evento['espacio_id']);
-        $usuario = User::where('id',$evento['usuario_id']);
+        $departamento = Departamento::find()->where('id',$evento['depto_solicitante']);
+        $espacio = Espacio::find()->where('id',$evento['espacio_id']);
+        $usuario = User::find()->where('id',$evento['usuario_id']);
 
         if(is_object($evento)){
             return Response()->json(
