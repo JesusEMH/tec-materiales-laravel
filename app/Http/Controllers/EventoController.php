@@ -53,10 +53,8 @@ class EventoController extends Controller
 
     public function show($id)
     {
-        $evento = Evento::find($id);
-        $departamento = Departamento::find()->where('id',$evento['depto_solicitante']);
-        $espacio = Espacio::find()->where('id',$evento['espacio_id']);
-        $usuario = User::find()->where('id',$evento['usuario_id']);
+        $evento = Evento::find($id)->load('departamentos')->load('espacios')->load('users');
+
 
         if(is_object($evento)){
             return Response()->json(
@@ -64,10 +62,7 @@ class EventoController extends Controller
                     "message" => "todo ha salido bien",
                      "code" => "200",
                     "status" => "success",
-                    "elemento" => $evento,
-                    "departamento" => $departamento,
-                    "espacio" => $espacio,
-                    "usuario" => $usuario
+                    "elemento" => $evento
                 ]
             , 200); 
         }else{
