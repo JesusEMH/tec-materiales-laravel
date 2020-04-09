@@ -66,7 +66,7 @@ class MantenimientoController extends Controller
      */
     public function show($id)
     {
-        $mantenimiento = Mantenimiento::find($id);
+        $mantenimiento = Mantenimiento::find($id)->load('servicio')->load('departamento')->load('user');
 
         if(is_object($mantenimiento)){
             return Response()->json(

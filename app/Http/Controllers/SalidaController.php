@@ -66,7 +66,7 @@ class SalidaController extends Controller
      */
     public function show($id)
     {
-        $salida = Salida::find($id);
+        $salida = Salida::find($id)->load('vehiculo')->load('departamento')->load('user');
 
         if(is_object($salida)){
             return Response()->json(
