@@ -53,7 +53,7 @@ class EventoController extends Controller
 
     public function show($id)
     {
-        $evento = Evento::find($id)->load('departamentos')->load('espacios')->load('users');
+        $evento = Evento::find($id)->load('departamento')->load('espacio')->load('user');
 
 
         if(is_object($evento)){
