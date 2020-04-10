@@ -14,7 +14,7 @@ class SalidaController extends Controller
      */
     public function index()
     {
-        $salidas = Salida::all();
+        $salidas = Salida::all()->orderBy('fecha', 'DESC');
 
         return response()->json(
             $data = [
@@ -67,6 +67,8 @@ class SalidaController extends Controller
     public function show($id)
     {
         $salida = Salida::find($id)->load('vehiculo')->load('departamento')->load('user');
+
+
 
         if(is_object($salida)){
             return Response()->json(
