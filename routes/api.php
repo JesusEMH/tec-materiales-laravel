@@ -22,6 +22,7 @@ Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 Route::get('avatar/{filename}', 'UserController@getImage');
 Route::get('detail/{id}', 'UserController@detail');
+Route::put('update/{id}', 'UserController@update');
 
 
 Route::group(['middleware' =>  'auth:api'], function(){
@@ -40,7 +41,6 @@ Route::group(['middleware' =>  'auth:api'], function(){
 	Route::apiResource('departamentos', 'DepartamentoController');	
 	Route::apiResource('ubications', 'UbicationController');
 
-	Route::put('update/{id}', 'UserController@update');
 	Route::delete('delete/{id}', 'UserController@delete');
 	Route::post('upload', 'UserController@upload');
 });
