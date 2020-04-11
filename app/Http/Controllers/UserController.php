@@ -98,7 +98,8 @@ class UserController extends Controller
     
 
         if(!$user_actualizado){
-            return response()->json([
+            return response()->json(
+              $data = [
                     'message' => 'lo siento!, algo ha salido mal',
                     'code' => '404',
                     'status' => 'error'
@@ -107,7 +108,8 @@ class UserController extends Controller
             , 404);
 
         }else{
-            return response()->json([
+            return response()->json(
+              $data = [
                     'message' => 'todo ha salido bien, el usuario se ha actualizado',
                     'code' => '200',
                     'status' => 'success'
