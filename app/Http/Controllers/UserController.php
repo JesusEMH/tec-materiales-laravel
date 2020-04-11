@@ -95,7 +95,7 @@ class UserController extends Controller
 
 		$user = User::where('id', $id);
     $user_actualizado = $user->update($request->all());
-    $usuario = User::where('id', $id);
+    
 
         if(!$user_actualizado){
             return response()->json([
@@ -110,8 +110,7 @@ class UserController extends Controller
             return response()->json([
                     'message' => 'todo ha salido bien, el usuario se ha actualizado',
                     'code' => '200',
-                    'status' => 'success',
-                    'usuario_actualizado' => $usuario
+                    'status' => 'success'
                 ]
             ,200);
 
