@@ -13,7 +13,7 @@ class EventoController extends Controller
 
     public function index()
     {
-        $evento = Evento::orderBy('fecha', 'desc')->get();
+        $evento = Evento::orderBy('fecha', 'desc')->paginate(10);
 
         return response()->json(
             $data = [
