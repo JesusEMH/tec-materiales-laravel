@@ -132,7 +132,7 @@ class EventoController extends Controller
 
     public function getAntiguos()
     {
-        $evento = Evento::orderBy('fecha', 'asc')->paginate(10)->get();
+        $evento = Evento::orderBy('fecha', 'desc')->paginate(10);
 
         return response()->json(
             $data = [
