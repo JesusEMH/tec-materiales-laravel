@@ -14,7 +14,7 @@ class MantenimientoController extends Controller
      */
     public function index()
     {
-        $mantenimientos = Mantenimiento::orderBy('fecha', 'desc')->get();
+        $mantenimientos = Mantenimiento::orderBy('fecha', 'desc')->paginate(10);
 
         return response()->json(
             $data = [

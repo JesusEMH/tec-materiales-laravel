@@ -14,7 +14,7 @@ class SalidaController extends Controller
      */
     public function index()
     {
-        $salidas = Salida::orderBy('fecha', 'desc')->get();
+        $salidas = Salida::orderBy('fecha', 'desc')->paginate(10);
 
         return response()->json(
             $data = [
