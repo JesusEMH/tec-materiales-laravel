@@ -43,6 +43,10 @@ Route::group(['middleware' =>  'auth:api'], function(){
 	Route::apiResource('ubications', 'UbicationController');
 
 	Route::delete('delete/{id}', 'UserController@delete');
+
+	Route::get('eventos/asc', 'EventoController@getAntiguos');
+	Route::get('eventos/month', 'EventoController@getPorStatus');
+	Route::get('eventos/status', 'EventoController@getPorMes');
 	
 });
 

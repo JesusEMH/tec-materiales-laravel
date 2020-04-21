@@ -129,4 +129,40 @@ class EventoController extends Controller
 
         }
     }
+
+    public function getAntiguos()
+    {
+        $evento = Evento::orderBy('fecha', 'asc')->paginate(10);
+
+        return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $evento
+            ], 200);
+    }
+
+    public function getPorMes()
+    {
+        $evento = Evento::orderBy('fecha', 'asc')->paginate(10);
+
+        return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $evento
+            ], 200);
+    }
+
+    public function getPorStatus()
+    {
+        $evento = Evento::where('status', 'aprovado')->paginate(10);
+
+        return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $evento
+            ], 200);
+    }
 }
