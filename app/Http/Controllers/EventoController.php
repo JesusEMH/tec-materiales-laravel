@@ -147,14 +147,15 @@ class EventoController extends Controller
         $date_start = date('Y-m-01');
         $date_end = date('Y-m-31');
        
-        $eventos = Evento::whereBetween('fecha', [$date_start, $date_end])->orderBy('fecha', 'desc')->paginate(10)->get();
+        $eventos = Evento::whereBetween('fecha', [$date_start, $date_end])->get();
+        $evento = $eventos->orderBy('fecha', 'desc')->paginate(10);
 
-        if($eventos){
+        if($evento){
             return response()->json(
             $data = [
                 "code" => 200,
                 "status" => "success",
-                "elementos" => $eventos
+                "elementos" => $evento
             ], 200);
 
         }else{
