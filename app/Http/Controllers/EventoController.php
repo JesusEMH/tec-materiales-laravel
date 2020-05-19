@@ -142,16 +142,29 @@ class EventoController extends Controller
             ], 200);
     }
 
-    public function getPorMes()
+    public function getPorMes($data)
     {
-        $evento = Evento::orderBy('fecha', 'asc')->paginate(10);
+        $mes = date("m");
+        $evento = Evento::whereMonth('fecha', $mes)->get()->orderBy('fecha', 'desc')->paginate(10);
 
-        return response()->json(
+        if($evento){
+            return response()->json(
             $data = [
                 "code" => 200,
                 "status" => "success",
                 "elementos" => $evento
             ], 200);
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solciitud ha fallado"
+                ], 200);
+        }
+
+
     }
 
     public function getPorStatus()
