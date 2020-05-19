@@ -144,10 +144,10 @@ class EventoController extends Controller
 
     public function getPorMes()
     {
-        $date_start = date('Y-m-01');
-        $date_end = date('Y-m-31');
+        $date_start = strtotime(date('Y-m-01'));
+        $date_end = strtotime(date('Y-m-31'));
        
-        $eventos = Evento::whereBetween(strtotime('fecha'), [strtotime($date_start), strtotime($date_end)])->get();
+        $eventos = Evento::whereBetween(strtotime('fecha'), [$date_start, $date_end])->get();
 
         if($eventos){
             return response()->json(
