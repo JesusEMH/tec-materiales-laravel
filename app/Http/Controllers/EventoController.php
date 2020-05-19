@@ -144,8 +144,8 @@ class EventoController extends Controller
 
     public function getPorMes()
     {
-        $mes = date("m");
-        $evento = Evento::whereMonth('fecha', $mes)->get()->orderBy('fecha', 'desc')->paginate(10);
+       
+        $evento = Evento::whereMonth('fecha', '05')->get()->orderBy('fecha', 'desc')->paginate(10);
 
         if($evento){
             return response()->json(
