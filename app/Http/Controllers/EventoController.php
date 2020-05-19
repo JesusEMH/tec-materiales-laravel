@@ -147,7 +147,7 @@ class EventoController extends Controller
         $date_start = strtotime(date('Y-m-01'));
         $date_end = strtotime(date('Y-m-31'));
        
-        $eventos = Evento::whereBetween(strtotime(date('fecha'))), [$date_start, $date_end])->get();
+        $eventos = Evento::whereBetween(strtotime(date('fecha')), [$date_start, $date_end])->get();
 
         if($eventos){
             return response()->json(
