@@ -172,7 +172,7 @@ class EventoController extends Controller
 
     public function getPorStatus()
     {
-        $eventos = Evento::where('status', 'pendiente')orderBy('fecha', 'desc')->->paginate(10);
+        $eventos = Evento::where('status', 'pendiente')->orderBy('fecha', 'desc')->->paginate(10);
 
 
         if($eventos){
