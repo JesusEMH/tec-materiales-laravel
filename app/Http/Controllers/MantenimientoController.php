@@ -182,4 +182,28 @@ class MantenimientoController extends Controller
 
 
     }
+
+    public function getPorStatus()
+    {
+        $mantenimientos = Mantenimiento::where('status', 'pendiente')->orderBy('fecha', 'desc')->paginate(10);
+
+
+        if($mantenimientos){
+            return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $mantenimientos
+            ], 200);
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solicitud ha fallado"
+                ], 200);
+        }
+
+    }
 }

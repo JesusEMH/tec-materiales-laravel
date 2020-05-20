@@ -183,4 +183,28 @@ class SalidaController extends Controller
 
 
     }
+
+    public function getPorStatus()
+    {
+        $salidas = Salida::where('status', 'pendiente')->orderBy('fecha', 'desc')->paginate(10);
+
+
+        if($salidas){
+            return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $salidas
+            ], 200);
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solicitud ha fallado"
+                ], 200);
+        }
+
+    }
 }
