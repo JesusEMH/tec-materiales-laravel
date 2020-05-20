@@ -192,4 +192,6 @@ class EventoController extends Controller
                 ], 200);
         }
 
+    }
+
 }
