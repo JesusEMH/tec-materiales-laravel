@@ -48,7 +48,7 @@ Route::group(['middleware' =>  'auth:api'], function(){
 	Route::get('eventopormes', 'EventoController@getPorMes');
 	Route::get('salidapormes', 'SalidaController@getPorMes');
 	Route::get('mantenimientopormes', 'MantenimientoController@getPorMes');
-	Route::get('eventos/status', 'EventoController@getPorStatus');
+	Route::get('eventostatus', 'EventoController@getPorStatus');
 	
 });
 

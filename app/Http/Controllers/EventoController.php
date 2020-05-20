@@ -172,13 +172,24 @@ class EventoController extends Controller
 
     public function getPorStatus()
     {
-        $evento = Evento::where('status', 'aprovado')->paginate(10);
+        $eventos = Evento::where('status', 'pendiente')orderBy('fecha', 'desc')->->paginate(10);
 
-        return response()->json(
+
+        if($eventos){
+            return response()->json(
             $data = [
                 "code" => 200,
                 "status" => "success",
-                "elementos" => $evento
+                "elementos" => $eventos
             ], 200);
-    }
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solciitud ha fallado"
+                ], 200);
+        }
+
 }
