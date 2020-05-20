@@ -155,6 +155,28 @@ class MantenimientoController extends Controller
         }
     }
 
+    public function getAntiguos()
+    {
+        $mantenimientos = mantenimiento::orderBy('fecha', 'asc')->paginate(10);
+
+        if($mantenimientos){
+            return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $mantenimientos
+            ], 200);
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solicitud ha fallado"
+                ], 200);
+        }
+    }
+
     public function getPorMes()
     {
         $date_start = date('Y-m-01');

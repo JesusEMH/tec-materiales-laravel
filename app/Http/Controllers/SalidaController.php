@@ -156,6 +156,28 @@ class SalidaController extends Controller
         }
     }
 
+    public function getAntiguos()
+    {
+        $salidas = Salida::orderBy('fecha', 'asc')->paginate(10);
+
+        if($salidas){
+            return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $salidas
+            ], 200);
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solicitud ha fallado"
+                ], 200);
+        }
+    }
+
         public function getPorMes()
     {
         $date_start = date('Y-m-01');
