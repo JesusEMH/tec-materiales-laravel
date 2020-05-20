@@ -155,4 +155,32 @@ class SalidaController extends Controller
 
         }
     }
+
+        public function getPorMes()
+    {
+        $date_start = date('Y-m-01');
+        $date_end = date('Y-m-31');
+       
+        $salidas = Salida::whereBetween('fecha', [$date_start, $date_end])->orderBy('fecha', 'desc')->paginate(10);
+
+
+        if($salidas){
+            return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $salidas
+            ], 200);
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solciitud ha fallado"
+                ], 200);
+        }
+
+
+    }
 }

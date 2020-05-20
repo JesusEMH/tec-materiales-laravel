@@ -46,6 +46,8 @@ Route::group(['middleware' =>  'auth:api'], function(){
 
 	Route::get('eventos/asc', 'EventoController@getAntiguos');
 	Route::get('eventopormes', 'EventoController@getPorMes');
+	Route::get('salidapormes', 'SalidaController@getPorMes');
+	Route::get('mantenimientopormes', 'MantenimientoController@getPorMes');
 	Route::get('eventos/status', 'EventoController@getPorStatus');
 	
 });

@@ -154,4 +154,32 @@ class MantenimientoController extends Controller
 
         }
     }
+
+    public function getPorMes()
+    {
+        $date_start = date('Y-m-01');
+        $date_end = date('Y-m-31');
+       
+        $mantenimientos = Mantenimiento::whereBetween('fecha', [$date_start, $date_end])->orderBy('fecha', 'desc')->paginate(10);
+
+
+        if($mantenimientos){
+            return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $mantenimientos
+            ], 200);
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solciitud ha fallado"
+                ], 200);
+        }
+
+
+    }
 }
