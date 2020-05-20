@@ -132,14 +132,24 @@ class EventoController extends Controller
 
     public function getAntiguos()
     {
-        $evento = Evento::orderBy('fecha', 'desc')->paginate(10);
+        $eventos = Evento::orderBy('fecha', 'asc')->paginate(10);
 
-        return response()->json(
+        if($eventos){
+            return response()->json(
             $data = [
                 "code" => 200,
                 "status" => "success",
-                "elementos" => $evento
+                "elementos" => $eventos
             ], 200);
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solicitud ha fallado"
+                ], 200);
+        }
     }
 
     public function getPorMes()

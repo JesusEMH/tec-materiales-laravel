@@ -44,7 +44,7 @@ Route::group(['middleware' =>  'auth:api'], function(){
 
 	Route::delete('delete/{id}', 'UserController@delete');
 
-	Route::get('eventos/asc', 'EventoController@getAntiguos');
+	Route::get('eventoantiguos', 'EventoController@getAntiguos');
 	Route::get('eventopormes', 'EventoController@getPorMes');
 	Route::get('salidapormes', 'SalidaController@getPorMes');
 	Route::get('mantenimientopormes', 'MantenimientoController@getPorMes');
