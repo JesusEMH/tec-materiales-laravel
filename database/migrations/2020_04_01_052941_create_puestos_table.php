@@ -18,12 +18,10 @@ class CreatePuestosTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('usuario_id');
             $table->unsignedBigInteger('departamento_id');
-            $table->unsignedBigInteger('cargo_id')->nullable();
-            $table->unsignedBigInteger('abreviacion_id')->nullable();
+            $table->unsignedBigInteger('cargo_id');
             
             $table->foreign('usuario_id')->references('id')->on('users');
             $table->foreign('departamento_id')->references('id')->on('departamentos');
-            $table->foreign('abreviacion_id')->references('id')->on('grados');
             $table->foreign('cargo_id')->references('id')->on('cargos');
         });
     }

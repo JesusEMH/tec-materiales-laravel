@@ -22,7 +22,4 @@ class Puesto extends Model
         return $this->belongsTo('App\Cargo', 'cargo_id');
     }
 
-    public function grado(){
-        return $this->belongsTo('App\Grado', 'abreviacion_id');
-    }
 }
