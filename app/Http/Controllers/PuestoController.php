@@ -14,7 +14,7 @@ class PuestoController extends Controller
      */
     public function index()
     {
-        $puestos = Puesto::all();
+        $puestos = Puesto::all()->load('user')->load('departamento')->load('cargo');
 
         return response()->json([
             "code" => 200,
