@@ -204,4 +204,29 @@ class EventoController extends Controller
 
     }
 
+    public function byUser($id)
+    {
+        $eventos = Evento::where('usuario_id', $id)->paginate(10);
+
+        if(is_object($eventos)){
+            return Response()->json(
+                $data = [
+                    "message" => "todo ha salido bien",
+                     "code" => "200",
+                    "status" => "success",
+                    "elemento" => $eventos,
+                ]
+            , 200); 
+        }else{
+            return Response()->json(
+                $data = [
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+            , 404);
+
+        }
+    }
+
 }

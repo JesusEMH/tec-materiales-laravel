@@ -229,4 +229,29 @@ class SalidaController extends Controller
         }
 
     }
+
+    public function byUser($id)
+    {
+        $salidas = Salida::where('usuario_id', $id)->paginate(10);
+
+        if(is_object($salidas)){
+            return Response()->json(
+                $data = [
+                    "message" => "todo ha salido bien",
+                     "code" => "200",
+                    "status" => "success",
+                    "elemento" => $salidas,
+                ]
+            , 200); 
+        }else{
+            return Response()->json(
+                $data = [
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+            , 404);
+
+        }
+    }
 }
