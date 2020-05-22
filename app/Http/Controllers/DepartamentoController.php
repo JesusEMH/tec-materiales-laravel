@@ -14,7 +14,7 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        $departamento = Departamento::all();
+        $departamento = Departamento::all()->load('subdireccion');
 
         return response()->json(
             $data = [
