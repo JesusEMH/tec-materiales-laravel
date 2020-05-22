@@ -55,6 +55,8 @@ Route::group(['middleware' =>  'auth:api'], function(){
 	Route::get('eventostatus', 'EventoController@getPorStatus');
 	Route::get('mantenimientostatus', 'MantenimientoController@getPorStatus');
 	Route::get('salidastatus', 'SalidaController@getPorStatus');
+
+	Route::get('depsubdireccion', 'DepartamentoController@getPorSubdireccion');
 	
 });
 
