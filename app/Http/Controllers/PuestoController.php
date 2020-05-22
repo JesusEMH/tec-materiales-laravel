@@ -19,7 +19,7 @@ class PuestoController extends Controller
         return response()->json([
             "code" => 200,
             "status" => "success",
-            "cargos" => $puestos
+            "elementos" => $puestos
         ], 200);
     }
 
