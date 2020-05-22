@@ -231,7 +231,7 @@ class MantenimientoController extends Controller
 
     public function byUser($id)
     {
-        $mantenimientos = Mantenimiento::where('usuario_id', $id)->paginate(10);
+        $mantenimientos = Mantenimiento::where('usuario_id', $id)->orderBy('fecha', 'desc')->paginate(10);
 
         if(is_object($mantenimientos)){
             return Response()->json(
