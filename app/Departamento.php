@@ -12,7 +12,7 @@ class Departamento extends Model
     ];
 
     public function subdireccion(){
-        return $this->hasMany('App\Subdirection', 'subdireccion_id');
+        return $this->belongsTo('App\Subdirection', 'subdireccion_id');
     }
 
     public function puesto(){
