@@ -15,7 +15,7 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        $departamento = Departamento::orderBy('subdireccion_id', 'desc')->load('subdireccion');
+        $departamento = Departamento::orderBy('subdireccion_id', 'desc')->paginate(10);
 
         return response()->json(
             $data = [
