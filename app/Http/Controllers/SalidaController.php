@@ -232,7 +232,7 @@ class SalidaController extends Controller
 
     public function byUser($id)
     {
-        $salidas = Salida::where('usuario_id', $id)->paginate(10);
+        $salidas = Salida::where('usuario_id', $id)->orderBy('fecha', 'desc')->paginate(10);
 
         if(is_object($salidas)){
             return Response()->json(

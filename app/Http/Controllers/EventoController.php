@@ -206,7 +206,7 @@ class EventoController extends Controller
 
     public function byUser($id)
     {
-        $eventos = Evento::where('usuario_id', $id)->paginate(10);
+        $eventos = Evento::where('usuario_id', $id)->orderBy('fecha', 'desc')->paginate(10);
 
         if(is_object($eventos)){
             return Response()->json(
