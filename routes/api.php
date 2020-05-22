@@ -56,6 +56,8 @@ Route::group(['middleware' =>  'auth:api'], function(){
 	Route::get('mantenimientostatus', 'MantenimientoController@getPorStatus');
 	Route::get('salidastatus', 'SalidaController@getPorStatus');
 
+	Route::get('mantenimientobyuser', 'MantenimientoController@byUser');
+
 	Route::get('depsubdireccion/{data}', 'DepartamentoController@getPorSubdireccion');
 	
 });

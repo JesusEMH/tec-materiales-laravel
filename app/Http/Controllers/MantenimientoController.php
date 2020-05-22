@@ -228,4 +228,29 @@ class MantenimientoController extends Controller
         }
 
     }
+
+    public function byUser($id)
+    {
+        $mantenimientos = Mantenimiento::where('usuario_id', $id)->paginate(10);
+
+        if(is_object($mantenimientos)){
+            return Response()->json(
+                $data = [
+                    "message" => "todo ha salido bien",
+                     "code" => "200",
+                    "status" => "success",
+                    "elemento" => $mantenimientos,
+                ]
+            , 200); 
+        }else{
+            return Response()->json(
+                $data = [
+                    'message' => 'lo siento!, algo ha salido mal',
+                    'code' => '404',
+                    'status' => 'error'
+                ]
+            , 404);
+
+        }
+    }
 }
