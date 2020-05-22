@@ -14,14 +14,12 @@ class PuestoController extends Controller
      */
     public function index()
     {
-        $puestos = Puesto::all()->load('user')->load('departamento')->load('cargo');
-        $puestos2 = Puesto::with(['user', 'departamento', 'cargo'])->paginate(10);
+        $puestos = Puesto::with(['user', 'departamento', 'cargo'])->paginate(10);
 
         return response()->json([
             "code" => 200,
             "status" => "success",
-            "cargos" => $puestos,
-            "cargos 2" => $puestos2,
+            "cargos" => $puestos
         ], 200);
     }
 
