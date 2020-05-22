@@ -21,7 +21,7 @@ class DepartamentoController extends Controller
             $data = [
             "code" => 200,
             "status" => "success",
-            "elementos" => $departamento
+            "elementos" => $departamento->load('subdireccion');
         ], 200);
     }
 
