@@ -65,7 +65,7 @@ class DepartamentoController extends Controller
      */
     public function show($id)
     {
-        $departamento = Departamento::find($id)->with(['subdireccion']);
+        $departamento = Departamento::find($id)->load('subdireccion');
 
         if(is_object($departamento)){
             return Response()->json(
