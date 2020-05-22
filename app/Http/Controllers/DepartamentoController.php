@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Departamento;
+use App\Subdirection;
 use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller
@@ -14,7 +15,7 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        $departamento = Departamento::all()->load('subdireccion');
+        $departamento = Departamento::all()->load('subdireccion')->paginate(10);
 
         return response()->json(
             $data = [
@@ -151,5 +152,30 @@ class DepartamentoController extends Controller
                 ],200);
 
         }
+    }
+
+    public function getPorSubdireccion($data)
+    {
+        $subdireccion = Subdirection::where('subdireccion', $data)->get();
+        $departamentos = Departamento::where('subdireccion_id', $subdireccion['id'])->paginate(10);
+
+
+        if($departamentos){
+            return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $departamentos
+            ], 200);
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solicitud ha fallado"
+                ], 200);
+        }
+
     }
 }
