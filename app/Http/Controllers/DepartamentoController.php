@@ -15,13 +15,13 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        $departamento = Departamento::orderBy('subdireccion_id', 'desc')->paginate(10);
+        $departamento = Departamento::orderBy('subdireccion_id', 'desc')->load('subdireccion');
 
         return response()->json(
             $data = [
             "code" => 200,
             "status" => "success",
-            "elementos" => $departamento->load('subdireccion')
+            "elementos" => $departamento->paginate(10)
         ], 200);
     }
 
@@ -166,7 +166,7 @@ class DepartamentoController extends Controller
             $data = [
                 "code" => 200,
                 "status" => "success",
-                "elementos" => $departamentos->load('subdireccion'),
+                "elementos" => $departamentos,
                 "subdireccion"=>$subdireccion
             ], 200);
 
