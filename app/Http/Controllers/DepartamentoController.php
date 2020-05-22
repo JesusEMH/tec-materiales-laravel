@@ -158,7 +158,7 @@ class DepartamentoController extends Controller
     {
         $subdireccion = Subdirection::where('subdireccion', $data)->get();
         $array = $subdireccion[0];
-        $departamentos = Departamento::where('subdireccion_id', $array['id'])->paginate(10);
+        $departamentos = Departamento::with(['subdireccion'])->where('subdireccion_id', $array['id'])->paginate(10);
 
 
         if($departamentos){
