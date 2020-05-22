@@ -158,7 +158,7 @@ class DepartamentoController extends Controller
     {
         $subdireccion = Subdirection::where('subdireccion', $data)->get();
         $array = get_object_vars($subdireccion);
-        $departamentos = Departamento::where('subdireccion_id', $array['id'])->paginate(10);
+        $departamentos = Departamento::where('subdireccion_id', 2)->paginate(10);
 
 
         if($departamentos){
@@ -166,7 +166,8 @@ class DepartamentoController extends Controller
             $data = [
                 "code" => 200,
                 "status" => "success",
-                "elementos" => $departamentos
+                "elementos" => $departamentos,
+                "subdireccion"=>$subdireccion
             ], 200);
 
         }else{
