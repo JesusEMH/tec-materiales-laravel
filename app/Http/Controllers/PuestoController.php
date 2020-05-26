@@ -156,14 +156,14 @@ class PuestoController extends Controller
                     "code" => 200,
                     "status" => "success",
                     "elementos" => $puestos
-                ], 404);
+                ], 200);
 
         }else{
             return response()->json([
                     "message" => "todo ha salido mal",
                     "code" => 404,
                     "status" => "error"
-                ],200);
+                ],404);
 
         }
     }
