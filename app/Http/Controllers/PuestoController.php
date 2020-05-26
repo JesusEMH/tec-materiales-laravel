@@ -150,7 +150,7 @@ class PuestoController extends Controller
         
         $puestos = Puesto::with(['user', 'departamento', 'cargo'])->where('usuario_id', $id);
 
-        if($puesto){
+        if($puestos){
             return response()->json([
                     "message" => "todo ha salido bien",
                     "code" => 200,
