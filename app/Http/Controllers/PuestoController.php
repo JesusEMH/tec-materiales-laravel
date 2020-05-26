@@ -148,7 +148,7 @@ class PuestoController extends Controller
     public function byUser($id)
     {
         
-        $puestos = Puesto::with(['user', 'departamento', 'cargo'])->get();
+        $puestos = Puesto::with(['user', 'departamento', 'cargo'])->where('usuario_id', $id);
 
         if($puestos){
             return response()->json([
