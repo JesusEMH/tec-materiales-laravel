@@ -144,4 +144,27 @@ class PuestoController extends Controller
 
         }
     }
+
+    public function byUser($id)
+    {
+        
+        $puestos = Puesto::with(['user', 'departamento', 'cargo'])->where('usuario_id', $id);
+
+        if($puesto){
+            return response()->json([
+                    "message" => "todo ha salido bien",
+                    "code" => 200,
+                    "status" => "success",
+                    "elementos" => $puestos
+                ], 404);
+
+        }else{
+            return response()->json([
+                    "message" => "todo ha salido mal",
+                    "code" => 404,
+                    "status" => "error"
+                ],200);
+
+        }
+    }
 }
