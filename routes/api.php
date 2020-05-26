@@ -42,7 +42,7 @@ Route::group(['middleware' =>  'auth:api'], function(){
 	Route::apiResource('departamentos', 'DepartamentoController');	
 	Route::apiResource('ubications', 'UbicationController');
 
-	Route::get('permisobyuser', 'PuestoController@byUser');
+	Route::get('puestobyuser', 'PuestoController@byUser');
 
 	Route::delete('delete/{id}', 'UserController@delete');
 
