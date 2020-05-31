@@ -232,34 +232,31 @@ class UserController extends Controller
     }
 
     public function claveLogin(){
-
       $datos = [
         'email' => request('email'),
-        'clave_electronica' => request('clave_electronica')
-    ];
+        'password' => request('password')
+      ];
 
-    if(Auth::attempt($datos)){
-      $user = Auth::user();
-      $usuario = User::where('email', $datos['email'])->first();
-     
-      return response()->json(
-        $data = [
-          'status' => 'success',
-          'code' => 200,
-          'message' => 'clave electronica correcta',
-          'usuario' => $usuario,
-          'clave' => $usuario['clave_electronica']
-        ], 200);
-    }else{
-      return response()->json([
-        'status' => 'error',
-        'code' => 404,
-        'message' => 'parece que algo malo ha ocurrido'
-      ]);
-    }
-
-      return response()->json($data, $data['code']);
-    }
+      if(Auth::attempt($datos)){
+        $user = Auth::user();
+        $usuario = User::where('email', $datos['email'])->first();
+       
+        return response()->json(
+          $data = [
+            'status' => 'success',
+            'code' => 200,
+            'message' => 'acceso a la solicitud exitoso',
+            'usuario' => $usuario,
+          ], 200);
+      }else{
+        return response()->json([
+          'status' => 'error',
+          'code' => 404,
+          'message' => 'parece que algo malo ha ocurrido'
+        ]);
+      }
+      
+  }
 
 
 }
