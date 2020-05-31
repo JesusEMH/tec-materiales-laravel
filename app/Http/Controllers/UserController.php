@@ -108,11 +108,15 @@ class UserController extends Controller
             , 404);
 
         }else{
+            $update = User::where('id', $id);
+            $update['clave_electronica'] = bcrypt($update['clave_electronica']);
+
             return response()->json(
               $data = [
                     'message' => 'todo ha salido bien, el usuario se ha actualizado',
                     'code' => '200',
-                    'status' => 'success'
+                    'status' => 'success',
+                    'usuario' => $update
                 ]
             ,200);
 
@@ -223,6 +227,36 @@ class UserController extends Controller
 	        );
 
 	      }
+
+      return response()->json($data, $data['code']);
+    }
+
+    public function claveLogin(){
+
+      $datos = [
+        'email' => request('email'),
+        'clave_electronica' => request('clave_electronica')
+    ];
+
+    if(Auth::attempt($datos)){
+      $user = Auth::user();
+      $usuario = User::where('email', $datos['email'])->first();
+     
+      return response()->json(
+        $data = [
+          'status' => 'success',
+          'code' => 200,
+          'message' => 'clave electronica correcta',
+          'usuario' => $usuario,
+          'clave' => $usuario['clave_electronica']
+        ], 200);
+    }else{
+      return response()->json([
+        'status' => 'error',
+        'code' => 404,
+        'message' => 'parece que algo malo ha ocurrido'
+      ]);
+    }
 
       return response()->json($data, $data['code']);
     }
