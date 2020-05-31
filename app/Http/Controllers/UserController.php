@@ -241,15 +241,14 @@ class UserController extends Controller
       $verifyPassword = User::where('password', $datos['password']);
 
       if($verifiyEmail && $verifyPassword){
-        
+
         $usuario = User::where('email', $datos['email'])->first();
        
         return response()->json(
           $data = [
             'status' => 'success',
             'code' => 200,
-            'message' => 'acceso a la solicitud exitoso',
-            'usuario' => $usuario,
+            'message' => 'acceso a la solicitud exitoso'
           ], 200);
       }else{
         return response()->json([
