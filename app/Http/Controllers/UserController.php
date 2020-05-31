@@ -237,8 +237,11 @@ class UserController extends Controller
         'password' => request('password')
       ];
 
-      if(Auth::attempt($datos)){
-        $user = Auth::user();
+      $verifiyEmail = User::where('email', $datos['email']);
+      $verifyPassword = User::where('password', $datos['password']);
+
+      if($verifiyEmail && $verifyPassword){
+        
         $usuario = User::where('email', $datos['email'])->first();
        
         return response()->json(
