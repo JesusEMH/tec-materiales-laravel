@@ -108,7 +108,7 @@ class UserController extends Controller
             , 404);
 
         }else{
-            $update = User::where('id', $id);
+            $update = User::where('id', $id)->get();
             $update['clave_electronica'] = bcrypt($update['clave_electronica']);
 
             return response()->json(
