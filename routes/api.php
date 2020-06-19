@@ -64,6 +64,10 @@ Route::group(['middleware' =>  'auth:api'], function(){
 	Route::get('mantenimientobyuser/{id}', 'MantenimientoController@byUser');
 	Route::get('salidabyuser/{id}', 'SalidaController@byUser');
 
+	Route::get('eventoEveryMonth/{inicio, final}', 'EventoController@everyMonth');
+	Route::get('mantenimientoEveryMonth/{inicio, final}', 'MantenimientoController@everyMonth');
+	Route::get('salidaEveryMonth/{inicio, final}', 'SalidaController@everyMonth');
+
 	Route::get('depsubdireccion/{data}', 'DepartamentoController@getPorSubdireccion');
 	
 });

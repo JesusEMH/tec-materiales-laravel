@@ -206,6 +206,35 @@ class SalidaController extends Controller
 
     }
 
+    public function everyMonth($inicio, $final)
+    {
+        $date_start = date($inicio);
+        $date_end = date($final);
+       
+        $salidas = Salida::whereBetween('fecha', [$date_start, $date_end])->orderBy('fecha', 'desc')->paginate(10);
+
+
+        if($salidas){
+            return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $salidas
+            ], 200);
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solciitud ha fallado"
+                ], 200);
+        }
+
+
+    }
+
+
     public function getPorStatus()
     {
         $salidas = Salida::where('status', 'pendiente')->orderBy('fecha', 'desc')->paginate(10);

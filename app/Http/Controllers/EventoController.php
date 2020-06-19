@@ -180,6 +180,34 @@ class EventoController extends Controller
 
     }
 
+    public function everyMonth($inicio, $final)
+    {
+        $date_start = date($inicio);
+        $date_end = date($final);
+       
+        $eventos = Evento::whereBetween('fecha', [$date_start, $date_end])->orderBy('fecha', 'desc')->paginate(10);
+
+
+        if($eventos){
+            return response()->json(
+            $data = [
+                "code" => 200,
+                "status" => "success",
+                "elementos" => $eventos
+            ], 200);
+
+        }else{
+            return response()->json(
+                $data = [
+                    "code" => 200,
+                    "status" => "error",
+                    "message" => "la solicitud ha fallado"
+                ], 200);
+        }
+
+
+    }
+
     public function getPorStatus()
     {
         $eventos = Evento::where('status', 'pendiente')->orderBy('fecha', 'desc')->paginate(10);
