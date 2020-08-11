@@ -109,7 +109,6 @@ class UserController extends Controller
 
         }else{
             $update = User::where('id', $id)->get();
-            $update['clave_electronica'] = bcrypt($update['clave_electronica']);
 
             return response()->json(
               $data = [
